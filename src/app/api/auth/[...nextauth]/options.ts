@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
           const user = (await UserModel.findOne({
             $or: [
               { email: credentials.email },
+              // credentials.identifier
               { username: credentials.email },
             ],
           })) as User | null;
@@ -40,7 +41,8 @@ export const authOptions: NextAuthOptions = {
           );
           if (isPasswordCorrect) {
             return {
-              id: user.id,
+              // id: user.id,
+              _id: user.id,
               email: user.email,
               username: user.username,
               isVerified: user.isVerified,
@@ -61,7 +63,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token._id = user.id;
+        token._id = user._id;
         token.isVerified = user.isVerified;
         token.isAcceptingMessage = user.isAcceptingMessage;
         token.username = user.username;
