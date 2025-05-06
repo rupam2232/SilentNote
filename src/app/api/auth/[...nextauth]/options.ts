@@ -11,11 +11,11 @@ export const authOptions: NextAuthOptions = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        identifier: { label: "Email/Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(
-        credentials: { email: string; password: string } | undefined
+        credentials: { identifier: string; password: string } | undefined
       ): Promise<import("next-auth").User | null> {
         if (!credentials) {
           return null;
@@ -24,9 +24,8 @@ export const authOptions: NextAuthOptions = {
         try {
           const user = (await UserModel.findOne({
             $or: [
-              { email: credentials.email },
-              // credentials.identifier
-              { username: credentials.email },
+              { email: credentials.identifier },
+              { username: credentials.identifier },
             ],
           })) as User | null;
           if (!user) {

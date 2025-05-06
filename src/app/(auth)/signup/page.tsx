@@ -64,10 +64,14 @@ function SigninPage() {
   }, [username]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
+    if(usernameMessage !== "Username is available"){
+      toast.error("This username is already taken");
+      return;
+    }
     setIsSubmitting(true);
     try {
       const response = await axios.post<ApiResponse>("/api/signup", data);
-      toast.success(response.data.message  || "Sign up successful");
+      toast.success(response.data.message || "Sign up successful");
       router.replace(`/verify/${username}`);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
@@ -82,7 +86,7 @@ function SigninPage() {
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join {process.env.NEXT_PUBLIC_APP_NAME}
+            {`Join ${process.env.NEXT_PUBLIC_APP_NAME}`}
           </h1>
           <p className="mb-4">Sign up to start your anonymous adventure</p>
         </div>
@@ -93,10 +97,11 @@ function SigninPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel htmlFor="username">Username</FormLabel>
                   <Input
                     {...field}
                     name="username"
+                    id="username"
                     placeholder="Enter a unique username"
                     type="text"
                     required
@@ -105,7 +110,9 @@ function SigninPage() {
                       debounced(e.target.value);
                     }}
                   />
-                  {isCheckingUsername && <Loader2 className="animate-spin h-4 w-4" />}
+                  {isCheckingUsername && (
+                    <Loader2 className="animate-spin h-4 w-4" />
+                  )}
                   {!isCheckingUsername && usernameMessage && (
                     <p
                       className={`text-sm ${
@@ -126,8 +133,15 @@ function SigninPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <Input {...field} name="email" type="email" required placeholder="Enter your email" />
+                  <FormLabel htmlFor="email">Email</FormLabel>
+                  <Input
+                    {...field}
+                    name="email"
+                    id="email"
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                  />
                   <p className="text-muted text-sm">
                     We will send you a verification code
                   </p>
@@ -141,27 +155,39 @@ function SigninPage() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <Input type="password" {...field} name="password" autoComplete="new-password" required placeholder="Enter your password" />
+                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <Input
+                    type="password"
+                    {...field}
+                    name="password"
+                    id="password"
+                    autoComplete="new-password"
+                    required
+                    placeholder="Enter a password"
+                  />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className='w-full cursor-pointer' disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full cursor-pointer"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Please wait...
                 </>
               ) : (
-                'Sign Up'
+                "Sign Up"
               )}
             </Button>
           </form>
         </Form>
         <div className="text-center mt-4">
           <p>
-            Already a member?{' '}
+            Already a member?{" "}
             <Link href="/signin" className="text-blue-600 hover:text-blue-800">
               Sign in
             </Link>
