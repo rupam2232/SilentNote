@@ -32,8 +32,6 @@ export async function GET() {
       {$group: {_id: "$_id", messages: {$push: "$messages"}}},
     ]);
 
-    console.log(user)
-
     if(!user || user.length === 0) {
       return Response.json(
         {
@@ -47,7 +45,7 @@ export async function GET() {
       {
         success: true,
         message: "User's messages fetched successfully",
-        data: user[0].messages,
+        messages: user[0].messages,
       },
       { status: 200 }
     );

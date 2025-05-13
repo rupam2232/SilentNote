@@ -22,25 +22,6 @@ const DashboardPage = () => {
 
   const handleDeleteMessage = async (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
-    // setIsLoading(true);
-    // try {
-    //   const response = await fetch(`/api/delete-message/${messageId}`, {
-    //     method: "DELETE",
-    //   });
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     toast.success(data.message);
-    //     setMessages((prevMessages) =>
-    //       prevMessages.filter((message) => message._id !== messageId)
-    //     );
-    //   } else {
-    //     toast.error(data.message);
-    //   }
-    // } catch (error) {
-    //   toast.error("An error occurred while deleting the message.");
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   const {data: session} = useSession();
@@ -124,9 +105,9 @@ const DashboardPage = () => {
   if(!session || !session.user) {
     return <div>Please login</div>
   }
-  
+  console.log(messages)
 return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
+    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded lg:w-full max-w-6xl">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
       <div className="mb-4">
