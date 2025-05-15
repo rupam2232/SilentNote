@@ -39,7 +39,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   };
   return (
     <Card className="w-full gap-3">
-      <CardHeader className="flex justify-between items-center">
+      <CardHeader className="flex justify-between items-start">
         <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
           <AlertDialogTrigger asChild>

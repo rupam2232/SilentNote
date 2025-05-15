@@ -142,7 +142,7 @@ function SigninPage() {
                     required
                     placeholder="Enter your email"
                   />
-                  <p className="text-muted text-sm">
+                  <p className="text-gray-500 text-xs">
                     We will send you a verification code
                   </p>
                   <FormMessage />

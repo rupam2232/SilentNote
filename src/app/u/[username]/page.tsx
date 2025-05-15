@@ -4,14 +4,13 @@ import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 // import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -84,7 +83,7 @@ export default function SendMessage() {
   return (
     <div className="container mx-auto my-8 p-6 relative bg-white rounded max-w-4xl h-screen">
       <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
+        Send Anonymous Message to {username}
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -93,7 +92,6 @@ export default function SendMessage() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
                 <FormControl>
                   <Textarea
                     rows={15}
@@ -109,8 +107,8 @@ export default function SendMessage() {
           <div className="flex justify-center w-full">
             {isLoading ? (
               <Button className="w-full" disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Sending...
               </Button>
             ) : (
               <Button
@@ -118,7 +116,7 @@ export default function SendMessage() {
                 type="submit"
                 disabled={isLoading || !messageContent}
               >
-                Send It
+                Send <Send />
               </Button>
             )}
           </div>
@@ -155,8 +153,8 @@ export default function SendMessage() {
               disabled
               className="my-4 w-full text-white bg-blue-700 hover:bg-blue-800"
             >
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Suggesting
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Suggesting...
             </Button>
           ) : (
             <Button
