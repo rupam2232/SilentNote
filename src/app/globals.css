@@ -122,29 +122,33 @@
 }
 
 @keyframes fade-in-left {
-  0% {
-    opacity: 0;
-    
-    transform: "translate3d(-100%, 0, 0)";
+  0% { 
+    transform: translateX(-100%); 
+    opacity: 0 
   }
-  100% {
-    opacity: 1;
-    
-    transform: "translate3d(0, 0, 0)",;
-  }
-  /* "": {
-              "0%": {
-                  opacity: 0,
-              },
-              "100%": {
-                  opacity: 1,
-              }, */
+    10% { 
+      opacity: 0.8
+    }
+    40% { 
+      opacity: 1 
+    }
+    50% { 
+      transform: translateX(0); 
+      opacity: 0.2
+    }
+    90% { 
+      opacity: 0 
+    }
+    100% { 
+      opacity: 0 
+    }
 }
 
 body::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
+
 
 @layer utilities {
   .no-scrollbar {
@@ -153,5 +157,8 @@ body::-webkit-scrollbar {
     ::-webkit-scrollbar {
       display: none; /* WebKit browsers */
     }
+  }
+  .fade-in-left {
+    animation: fade-in-left 4s ease-in-out forwards infinite;
   }
 }

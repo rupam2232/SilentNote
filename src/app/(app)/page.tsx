@@ -111,28 +111,6 @@ export default function LandingPage() {
         <div className="absolute bottom-[20%] right-[10%] -z-10 h-[250px] w-[250px] rounded-full bg-purple-800 opacity-10 blur-[100px]"></div>
       </div>
 
-      {/* Header */}
-      {/* <header className="sticky top-0 z-50 border-b border-gray-800/50 backdrop-blur-md">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <MessageSquare className="h-6 w-6 text-purple-500" />
-            <span className="text-xl font-bold">{process.env.NEXT_PUBLIC_APP_NAME}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-sm text-gray-300 transition-colors hover:text-white"
-            >
-              Login
-            </Link>
-            <Button className="relative overflow-hidden bg-purple-600 transition-all duration-300 hover:bg-purple-700 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-              <span className="relative z-10">Sign Up</span>
-              <span className="absolute inset-0 -z-10 translate-y-[100%] bg-purple-500 transition-transform duration-300 hover:translate-y-0"></span>
-            </Button>
-          </div>
-        </div>
-      </header> */}
-
       {/* Hero Section */}
       <section ref={heroRef} className="relative py-20 md:pb-32 md:pt-24">
         <div className="container mx-auto px-4 text-center">
@@ -153,14 +131,14 @@ export default function LandingPage() {
             }}
           >
             Get{" "}
-            <span className="relative inline-block bg-gradient-to-r bg-clip-text from-gray-300 to-purple-500">
+            <span className="relative inline-block text-purple-500 md:text-transparent md:bg-gradient-to-r md:bg-clip-text from-gray-300 to-purple-500">
               Honest{" "}
             </span>{" "}
             <span className="text-purple-500">Feedback</span>{" "}
-            <span className="relative inline-block bg-gradient-to-r bg-clip-text from-purple-500 to-gray-300">
+            <span className="relative inline-block text-gray-300 md:text-transparent md:bg-gradient-to-r md:bg-clip-text from-purple-500 to-gray-300">
               Anonymously
               <svg
-                className="absolute -bottom-2 left-0 w-full"
+                className="absolute -bottom-2 left-0 w-full -z-10"
                 viewBox="0 0 300 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -287,7 +265,16 @@ export default function LandingPage() {
 
                   {/* Connector line for desktop */}
                   {index < 2 && (
-                    <div className={`absolute -right-4 top-1/2 hidden h-[2px] w-8 bg-gradient-to-r from-transparent to-purple-600 md:block animate-[fade-in-left_1s_ease-in-out_infinite_delay_${index+2}s]`}></div>
+                    <div
+                      className={`absolute -right-4 top-1/2 hidden h-[2px] opacity-0 w-8 bg-gradient-to-r from-transparent to-purple-600 md:block fade-in-left`}
+                      style={{
+                        // left: index === 0 ? 0 : "auto",
+                        // right: index === 1 ? 0 : "auto",
+                        animationDelay: `${index * 2}s`, // 0s for first, 2s for second
+                        animationIterationCount: "infinite",
+                        animationFillMode: "both",
+                      }}
+                    ></div>
                   )}
                 </div>
               </div>
