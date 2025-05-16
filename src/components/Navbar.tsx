@@ -10,7 +10,7 @@ const Navbar = () => {
   const user: User = session?.user;
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-900 border-b border-gray-800/50 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-gray-900 border-b-2 border-gray-700/50">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4 shadow-md text-white">
         <div className="container mx-auto flex md:flex-row justify-between items-center">
           <div className="flex items-center gap-2">

@@ -29,7 +29,11 @@ const parseStringMessages = (messageString: string): string[] => {
 };
 
 export default function SendMessage() {
-  const [aiMessages, setAiMessages] = useState<string[]>([]);
+  const [aiMessages, setAiMessages] = useState<string[]>([
+    "What’s a hobby you’ve recently started?",
+    "If you could have dinner with any historical figure, who would it be?",
+    "What’s a simple thing that makes you happy?",
+  ]);
   const [messageLoading, setMessageLoading] = useState(false);
 
   const params = useParams<{ username: string }>();
