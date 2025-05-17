@@ -4,6 +4,17 @@ import { useSession, signOut } from "next-auth/react";
 import { User } from "next-auth";
 import { Button } from "./ui/button";
 import { Loader2, MessageSquare } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -22,14 +33,32 @@ const Navbar = () => {
           {session ? (
             <>
               <span className="hidden md:inline">
-                Welcome, {user?.username || user?.email}
+                {`Welcome, ${user?.username || user?.email}`}
               </span>
-              <Button
-                onClick={() => signOut()}
-                className="w-auto bg-white text-black cursor-pointer"
-              >
-                Logout
-              </Button>
+
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button className="w-auto bg-white text-black cursor-pointer hover:bg-gray-200">
+                    Sign Out
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will Sign you out of this website.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => signOut()}>
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </>
           ) : (
             <>

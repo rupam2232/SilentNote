@@ -43,6 +43,34 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@theme inline {
+  --animate-shine: shine var(--duration) infinite linear;
+ 
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
+}
+
+
+@keyframes reveal {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -160,5 +188,8 @@ body::-webkit-scrollbar {
   }
   .fade-in-left {
     animation: fade-in-left 4s ease-in-out forwards infinite;
+  }
+  .reveal {
+    animation: reveal 1s forwards;
   }
 }

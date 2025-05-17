@@ -178,12 +178,13 @@ const DashboardPage = () => {
               onMessageDelete={handleDeleteMessage}
             />
           ))
-        ) : isLoading ? (
-          <div className="flex items-center gap-2">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Loading...
+        ) : isLoading ?
+        new Array(4).fill("").map((val,index)=>(
+          <div key={index} className="flex items-center gap-2 bg-input py-16 rounded-md animate-pulse">
+            {/* <Loader2 className="h-4 w-4 animate-spin" />
+            Loading... */}
           </div>
-        ) : (
+        )) : (
           <p>No messages to display.</p>
         )}
       </div>

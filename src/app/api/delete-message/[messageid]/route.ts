@@ -5,7 +5,10 @@ import UserModel from "@/model/User";
 import { User } from "next-auth";
 import mongoose from "mongoose";
 
-export async function DELETE(request: Request , {params}: {params: {messageid: string}}) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: { messageid: string } }
+) {
   const messageId = params.messageid;
 
   await dbConnect();
@@ -55,5 +58,4 @@ export async function DELETE(request: Request , {params}: {params: {messageid: s
       { status: 500 }
     );
   }
-
 }
