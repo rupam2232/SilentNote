@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     "message app",
   ],
   authors: [{ name: `${process.env.NEXT_PUBLIC_APP_NAME}` }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: `${process.env.NEXT_PUBLIC_APP_NAME} - Anonymous Feedback & Messaging Platform`,
@@ -43,7 +42,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  themeColor: "#9810fa",
 };
 
 export default function RootLayout({
