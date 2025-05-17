@@ -5,14 +5,15 @@ import UserModel from "@/model/User";
 import { User } from "next-auth";
 import mongoose from "mongoose";
 
-type Params = { messageid: string }
+type Params = Promise<{ messageid: string }>
 
 export async function DELETE(
   request: Request,
-  { params }: { params: Params }
+  segmentData: { params: Params }
+  // { params }: { params: Params }
 ) {
-  const {messageid} = await params;
-  const messageId = messageid
+  const params = await segmentData.params;
+  const messageId = params.messageid;
 
   await dbConnect();
 
