@@ -1,13 +1,10 @@
-
 import { Metadata } from "next";
 import ClientPage from "./ClientPage";
 
-type Props = {
-  params: { username: string };
-};
+type Props = Promise<{ username: string }>
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { username } = params;
+export async function generateMetadata({ params }: {params : Props}): Promise<Metadata> {
+  const { username } = await params;
   return {
     title: `${username}'s Anonymous Board | AnonBoard`,
     description: `Send anonymous messages or feedback to ${username} without revealing your identity.`,
