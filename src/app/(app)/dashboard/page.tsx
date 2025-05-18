@@ -102,31 +102,47 @@ const DashboardPage = () => {
 
   const data: User = session?.user;
 
-  const baseUrl = `${window?.location.protocol}//${window.location.host}`;
-  const profileUrl = `${baseUrl}/u/${data?.username}`;
+  const [profileUrl, setProfileUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && session?.user?.username) {
+      const baseUrl = `${window.location.protocol}//${window.location.host}`;
+      setProfileUrl(`${baseUrl}/u/${data?.username}`);
+    }
+  }, [session, data]);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(profileUrl);
-    toast.success("Link copied to clipboard");
+    if (profileUrl) {
+      navigator.clipboard.writeText(profileUrl);
+      toast.success("Link copied to clipboard");
+    }
   };
 
   if (typeof session === "undefined") {
-    return <div className="h-[80vh] flex items-center justify-center gap-2">
-      <Loader2 className="h-12 w-12 animate-spin" />
-    </div>;
+    return (
+      <div className="h-[80vh] flex items-center justify-center gap-2">
+        <Loader2 className="h-12 w-12 animate-spin" />
+      </div>
+    );
   }
 
   if (!session || !session.user) {
-    return <div className="h-[80vh] flex items-center justify-center">
-      Please
-      <Link href="/signin" className="text-blue-500 ml-1.5 underline">Sign In</Link>
-    </div>;
+    return (
+      <div className="h-[80vh] flex items-center justify-center">
+        Please
+        <Link href="/signin" className="text-blue-500 ml-1.5 underline">
+          Sign In
+        </Link>
+      </div>
+    );
   }
 
   return (
     <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded lg:w-full max-w-6xl">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
-      <h1 className="text-2xl font-bold mb-4 md:hidden">Welcome, {data?.username}</h1>
+      <h1 className="text-2xl font-bold mb-4 md:hidden">
+        Welcome, {data?.username}
+      </h1>
 
       <div className="mb-4">
         <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{" "}
@@ -178,13 +194,17 @@ const DashboardPage = () => {
               onMessageDelete={handleDeleteMessage}
             />
           ))
-        ) : isLoading ?
-        new Array(4).fill("").map((val,index)=>(
-          <div key={index} className="flex items-center gap-2 bg-input py-16 rounded-md animate-pulse">
-            {/* <Loader2 className="h-4 w-4 animate-spin" />
+        ) : isLoading ? (
+          new Array(4).fill("").map((val, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 bg-input py-16 rounded-md animate-pulse"
+            >
+              {/* <Loader2 className="h-4 w-4 animate-spin" />
             Loading... */}
-          </div>
-        )) : (
+            </div>
+          ))
+        ) : (
           <p>No messages to display.</p>
         )}
       </div>
