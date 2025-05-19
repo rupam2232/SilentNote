@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     title: `${process.env.NEXT_PUBLIC_APP_NAME} - Anonymous Feedback & Messaging Platform`,
     description:
       "Create your personal feedback space where friends, family, and followers can share their thoughts with you - completely anonymous and private.",
-    url: "https://yourdomain.com",
+    url: "https://silentnote.vercel.app/",
     siteName: `${process.env.NEXT_PUBLIC_APP_NAME}`,
     images: [
       {
-        url: "https://yourdomain.com/favicon.ico",
+        url: "https://silentnote.vercel.app/favicon.ico",
         width: 1200,
         height: 630,
         alt: `${process.env.NEXT_PUBLIC_APP_NAME} Preview`,
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: `${process.env.NEXT_PUBLIC_APP_NAME} - Get Honest Anonymous Feedback`,
     description:
       "A private space to receive honest thoughts and secret messages. Just share your link and let others speak freely.",
-    images: ["https://yourdomain.com/preview.png"],
+    images: ["https://silentnote.vercel.app/favicon.ico"],
   },
   icons: {
     icon: "/favicon.ico",
