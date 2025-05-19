@@ -19,15 +19,13 @@ import { useParams } from "next/navigation";
 import { messageSchema } from "@/schemas/messageSchema";
 import { ApiResponse } from "@/types/ApiResponse";
 import { CardHeader, CardContent, Card } from "@/components/ui/card";
+import Link from "next/link";
 
 const specialChar = "||";
 
 const parseStringMessages = (messageString: string): string[] => {
-  return messageString
-    .split(specialChar)
-    .map((msg) => msg.trim());
+  return messageString.split(specialChar).map((msg) => msg.trim());
 };
-
 
 export default function ClientPage() {
   const [aiMessages, setAiMessages] = useState<string[]>([
@@ -170,11 +168,10 @@ export default function ClientPage() {
               Suggesting...
             </Button>
           ) : (
-            <div className="my-8 relative">
+            <div className="mb-4 mt-8 relative">
               <Button
                 onClick={fetchSuggestedMessages}
                 className="w-full text-white bg-sky-500 hover:bg-sky-600 transition-all duration-300"
-                
                 disabled={isLoading}
               >
                 AI Suggest
@@ -185,8 +182,7 @@ export default function ClientPage() {
                   {
                     "--border-width": `2px`,
                     "--duration": `14s`,
-                    backgroundImage: `radial-gradient(transparent,transparent, ${
-                      "#e5484d, #FE8FB5, #FFBE7B"},transparent,transparent)`,
+                    backgroundImage: `radial-gradient(transparent,transparent, ${"red, orange, yellow"},transparent,transparent)`,
                     backgroundSize: "300% 300%",
                     mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
                     WebkitMask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
@@ -199,6 +195,13 @@ export default function ClientPage() {
             </div>
           )}
         </div>
+      </div>
+      <div className="mt-8 text-center text-gray-500">
+        Create your own Link to receive anonymous messages.{" "}
+        <Link href={"/"} className="text-blue-500 hover:underline">
+          Click here
+        </Link>{" "}
+        to get your own link!
       </div>
     </div>
   );

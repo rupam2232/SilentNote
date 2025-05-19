@@ -59,18 +59,6 @@
   }
 }
 
-
-@keyframes reveal {
-  0% {
-    transform: translateY(-50%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -140,12 +128,54 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@keyframes reveal {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
   }
-  body {
-    @apply bg-background text-foreground;
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0% {
+    d: path(
+      "M1 5.5C32.5 5.5 32 10.5 64 10.5C95 10.5 95.5 1 128 1C160.5 1 160 10.5 192 10.5C224 10.5 223.5 1 256 1C288.5 1 288 5.5 299 5.5"
+    );
+  }
+  25% {
+    d: path(
+      "M1 5.5C32.5 1 32 5.5 64 5.5C95 5.5 95.5 10.5 128 10.5C160.5 10.5 160 1 192 1C224 1 223.5 10.5 256 10.5C288.5 10.5 288 1 299 1"
+    );
+  }
+  50% {
+    d: path(
+      "M1 10.5C32.5 10.5 32 1 64 1C95 1 95.5 5.5 128 5.5C160.5 5.5 160 10.5 192 10.5C224 10.5 223.5 1 256 1C288.5 1 288 5.5 299 5.5"
+    );
+  }
+  75% {
+    d: path(
+      "M1 1C32.5 1 32 10.5 64 10.5C95 10.5 95.5 5.5 128 5.5C160.5 5.5 160 1 192 1C224 1 223.5 10.5 256 10.5C288.5 10.5 288 5.5 299 5.5"
+    );
+  }
+  100% {
+    d: path(
+      "M1 5.5C32.5 5.5 32 10.5 64 10.5C95 10.5 95.5 1 128 1C160.5 1 160 10.5 192 10.5C224 10.5 223.5 1 256 1C288.5 1 288 5.5 299 5.5"
+    );
+  }
+}
+
+@keyframes waveMorph {
+  0% {
+    d: path("M1 5.5C32.5 5.5 32 10.5 64 10.5C95 10.5 95.5 1 128 1C160.5 1 160 10.5 192 10.5C224 10.5 223.5 1 256 1C288.5 1 288 5.5 299 5.5");
+  }
+  50% {
+    d: path("M1 5.5C32.5 5.5 32 1 64 1C95 1 95.5 10.5 128 10.5C160.5 10.5 160 1 192 1C224 1 223.5 10.5 256 10.5C288.5 10.5 288 5.5 299 5.5");
+  }
+  100% {
+    d: path("M1 5.5C32.5 5.5 32 10.5 64 10.5C95 10.5 95.5 1 128 1C160.5 1 160 10.5 192 10.5C224 10.5 223.5 1 256 1C288.5 1 288 5.5 299 5.5");
   }
 }
 
@@ -172,11 +202,19 @@
     }
 }
 
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 body::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
-
 
 @layer utilities {
   .no-scrollbar {
@@ -191,5 +229,11 @@ body::-webkit-scrollbar {
   }
   .reveal {
     animation: reveal 1s forwards;
+  }
+  .wave {
+    animation: wave 4s ease-in-out infinite;
+  }
+  .animate-real-wave {
+    animation: waveMorph 2s ease-in-out infinite;
   }
 }
