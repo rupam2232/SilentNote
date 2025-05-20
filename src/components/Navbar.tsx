@@ -15,10 +15,19 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const user: User = session?.user;
+  const router = useRouter();
+
+  const handleSignout = async () => {
+    await signOut({
+      redirect: false
+    });
+    router.replace("/");
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-gray-900 border-b-2 border-gray-700/50">
@@ -58,7 +67,7 @@ const Navbar = () => {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => signOut()}>
+                    <AlertDialogAction onClick={() => handleSignout()}>
                       Continue
                     </AlertDialogAction>
                   </AlertDialogFooter>

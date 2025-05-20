@@ -40,7 +40,6 @@ export const authOptions: NextAuthOptions = {
           );
           if (isPasswordCorrect) {
             return {
-              // id: user.id,
               _id: user.id,
               email: user.email,
               username: user.username,
