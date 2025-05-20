@@ -1,8 +1,4 @@
-# SilentNote
-
-<p align="center">
-<img src="https://silentnote.vercel.app/favicon.ico" alt="Rikio" width="50"/>
-</p>
+# <img align="center" src="https://silentnote.vercel.app/favicon.ico" alt="Rikio" width="30"/> SilentNote 
 
 **SilentNote** is a modern, anonymous feedback platform that empowers users to receive honest opinions from friends, followers, or team members—completely anonymously. Whether you're a content creator, student, or team leader, SilentNote provides a safe space for open communication.
 
