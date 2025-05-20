@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { User } from "next-auth";
 import { Button } from "./ui/button";
-import { Loader2, MessageSquare } from "lucide-react";
+import { Github, Loader2, MessageSquare } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,7 +35,12 @@ const Navbar = () => {
               <span className="hidden md:inline">
                 {`Welcome, ${user?.username || user?.email}`}
               </span>
-
+              <div className="flex items-center gap-2">
+              <a className="items-center gap-2 hidden md:flex" href="https://github.com/rupam2232/SilentNote" target="_blank" rel="noopener noreferrer" title="Star on Github" aria-label="Star on Github">
+              <Button className="bg-white text-black cursor-pointer hover:bg-gray-200 [&_svg]:!size-5">
+                <Github className="bg-black text-white fill-white p-0.5 pb-0 rounded-full" />Star on GitHub
+                </Button>
+              </a>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button className="w-auto bg-white text-black cursor-pointer hover:bg-gray-200">
@@ -59,9 +64,15 @@ const Navbar = () => {
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
+              </div>
             </>
           ) : (
-            <>
+            <div className="flex items-center gap-2">
+            <a className="items-center gap-2 hidden md:flex" href="https://github.com/rupam2232/SilentNote" target="_blank" rel="noopener noreferrer" title="Star on Github" aria-label="Star on Github">
+              <Button className="bg-white text-black cursor-pointer hover:bg-gray-200 [&_svg]:!size-5">
+                <Github className="bg-black text-white fill-white p-0.5 pb-0 rounded-full" />Star on GitHub
+                </Button>
+              </a>
               <Link href="/signin">
                 <Button className="relative overflow-hidden bg-purple-600 transition-all duration-300 hover:bg-purple-700 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
                   {typeof session === "undefined" ? (
@@ -74,7 +85,7 @@ const Navbar = () => {
                   )}
                 </Button>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </nav>
