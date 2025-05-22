@@ -46,7 +46,7 @@ const Navbar = () => {
               </span>
               <div className="flex items-center gap-2">
               <a className="items-center gap-2 hidden md:flex" href="https://github.com/rupam2232/SilentNote" target="_blank" rel="noopener noreferrer" title="Star on Github" aria-label="Star on Github">
-              <Button className="bg-white text-black cursor-pointer hover:bg-gray-200 [&_svg]:!size-5">
+              <Button className="bg-white text-black cursor-pointer hover:bg-white [&_svg]:!size-5">
                 <Github className="bg-black text-white fill-white p-0.5 pb-0 rounded-full" />Star on GitHub
                 </Button>
               </a>
@@ -78,7 +78,7 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-2">
             <a className="items-center gap-2 hidden md:flex" href="https://github.com/rupam2232/SilentNote" target="_blank" rel="noopener noreferrer" title="Star on Github" aria-label="Star on Github">
-              <Button className="bg-white text-black cursor-pointer hover:bg-gray-200 [&_svg]:!size-5">
+              <Button className="bg-white text-black cursor-pointer hover:bg-white [&_svg]:!size-5">
                 <Github className="bg-black text-white fill-white p-0.5 pb-0 rounded-full" />Star on GitHub
                 </Button>
               </a>
